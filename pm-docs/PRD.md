@@ -1,5 +1,5 @@
 # Movie Recommender
-The goal of this web page is to recommend movies to the user based on genre and their current mood. 
+The goal of this web page is to recommend movies to the user based on genre. 
 ### Core Features: 
 - **Genre based movie recommendations**: Users choose a genre (e.g., Action, Comedy, Romance) and the site shows a few movie suggestions from a preset list. Please have 5 genres and the preset list should be movies that you recommend to me and have at least three in each genre category. 
 - **Movie card displays**: After a movie is recommended, the recommendations page will show the movie’s poster and title. 
