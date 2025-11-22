@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendations</title>
+<meta charset="UTF-8">
+<link rel="icon" href="images/movie-icon.png" type="image/x-icon">
+<title>Movie Recommendations</title>
+<style>
+/* Used AI to help generate Netflix theme colors (dark bg + red accent) and light mode toggle as well - this was because I struggled to make it look nice after various attempts - also the layout looked bad */
+body{margin:0;font-family:Arial;background:#141414;color:#fff;}
+h1{margin:16px 0;text-align:center;color:#e50914;}
+nav{display:flex;justify-content:center;gap:14px;background:#000;padding:12px 0;}
+nav a{color:#fff;text-decoration:none;font-weight:bold;}
+nav a:hover{color:#e50914;}
+.box{flex:1 1 300px;border:2px solid #e50914;border-radius:8px;padding:12px;background:#1f1f1f;}
+.wrap{display:flex;flex-wrap:wrap;gap:16px;margin:0 16px 26px;}
+.img-wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:40px;}
+.img-wrap img{width:100%;max-width:500px;border:2px solid #e50914;border-radius:8px;}
+.btn{display:inline-block;padding:10px 18px;border:2px solid #e50914;color:#fff;text-decoration:none;font-weight:bold;border-radius:6px;background:#e50914;}
+.btn:hover{background:#b00610;}
+/* light theme overrides */
+body.light{background:#ffffff;color:#000;}
+body.light nav{background:#e6e6e6;}
+body.light nav a{color:#000;}
+body.light nav a:hover{color:#e50914;}
+body.light .box{background:#f5f5f5;color:#000;}
+body.light .img-wrap img{border-color:#e50914;}
+body.light .btn{background:#e50914;color:#fff;border-color:#e50914;}
+body.light .btn:hover{background:#b00610;}
+</style>
 </head>
 <body>
-    <h1 style="text-align: center; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Movie Match</h1>
-    <nav style="display: flex; justify-content: space-evenly; align-items: center;">
-        <a href="home.html">Home</a> |
-        <a href="recommendations.html">Recommendations</a> |
-        <a href="movie-details.html">Movie Details</a> |
-        <a href="contact.html">Contact</a>
-    </nav>
-    <div style="display:flex; flex-wrap:wrap; gap:16px; margin:20px 0;">
-        <div style="flex:1 1 300px; border:2px solid black; padding:12px; border-radius:8px;">
-            <h2 style="margin-top:0;">Welcome to my Movie Recommendations</h2>
-            <p style="margin:8px 0 0;">Welcome to MovieMatch — a simple tool to help you quickly discover movies you’ll enjoy.
-Pick a genre you’re in the mood for, and we’ll show you a curated list of films hand-selected for you.
-Whether you want action, comedy, romance, or anything in between, MovieMatch makes choosing easy.</p>
-        </div>
-        <div style="flex:1 1 300px; border:2px solid black; padding:12px; border-radius:8px;">
-            <h2 style="margin-top:0;">How It Works</h2>
-            <p style="margin:8px 0 0;">Choose a genre from the recommendations page, and MovieMatch will instantly display a set of movies from that category.
-Click any movie poster to see its details, including a short description, personal rating, and trailer.
-It’s a fast, simple way to find something great to watch.</p>
-        </div>
-    </div>
+
+<h1>Movie Match</h1>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="recommendations.html">Recommendations</a>
+  <a href="movie-details.html">Movie Details</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<button id="themeToggle" class="btn" style="position:fixed;top:12px;right:12px;padding:6px 12px;">Light</button>
+
+<div class="wrap">
+  <div class="box">
+    <h2 style="margin-top:0;color:#e50914;">Welcome</h2>
+    <p>Pick a genre on the Recommendations page and click a movie to view its details.</p>
+    <a class="btn" href="recommendations.html">Browse Genres »</a>
+  </div>
+
+  <div class="box">
+    <h2 style="margin-top:0;color:#e50914;">How It Works</h2>
+    <p>Select a genre, see a few titles, then open one for a quick overview on the details page.</p>
+  </div>
+</div>
+
+<div class="img-wrap">
+  <img src="images/movie-carousel.webp" alt="Movies">
+  <img src="images/movie-carousel-2.jpg" alt="Movies">
+</div>
+
+<script>
+document.getElementById('themeToggle').addEventListener('click',function(){
+  document.body.classList.toggle('light');
+  this.textContent = document.body.classList.contains('light') ? 'Dark' : 'Light';
+});
+</script>
 </body>
 </html>

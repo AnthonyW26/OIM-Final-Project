@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="images/movie-icon.png" type="image/x-icon">
+<title>Recommendations</title>
+
+<style>
+/* Used AI to help generate Netflix theme colors (dark bg + red accent) and light mode toggle - this was because I struggled to make it look nice after various attempts - also the layout looked bad */
+body { margin:0; font-family:Arial; background:#141414; color:#fff; }
+h1 { text-align:center; margin:16px; color:#e50914; }
+nav { display:flex; justify-content:center; gap:14px; background:#000; padding:12px 0; margin-bottom:12px; }
+nav a { color:#fff; text-decoration:none; font-weight:bold; }
+nav a:hover { color:#e50914; }
+
+form { display:flex; justify-content:center; gap:8px; margin-bottom:18px; }
+select, button {
+  padding:6px 10px; font-size:14px; border-radius:4px;
+  border:2px solid #e50914; background:#1f1f1f; color:#fff;
+}
+button:hover { background:#e50914; cursor:pointer; }
+
+#results { margin:16px; }
+.grid { display:flex; flex-wrap:wrap; gap:16px; }
+
+.card { width:160px; border:2px solid #e50914; background:#1f1f1f; padding:6px; border-radius:6px; text-decoration:none; color:#fff; }
+.card img { width:100%; height:220px; object-fit:cover; border-radius:4px; }
+.card .title { margin-top:6px; font-weight:bold; }
+.card .meta { font-size:12px; color:#bbb; }
+
+/* Light mode overrides (AI used to help generate these) */
+body.light { background:#fff; color:#000; }
+body.light nav { background:#e6e6e6; }
+body.light nav a { color:#000; }
+body.light nav a:hover { color:#e50914; }
+body.light .card { background:#f5f5f5; border-color:#000; color:#000; }
+body.light .card .meta { color:#444; }
+body.light select, body.light button { background:#f5f5f5; color:#000; border-color:#000; }
+</style>
+</head>
+<body>
+
+<h1>Movie Match</h1>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="recommendations.html">Recommendations</a>
+  <a href="movie-details.html">Movie Details</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<!-- Theme toggle button (AI helped make this dynamic and simple) -->
+<button id="themeToggle" style="position:fixed;top:12px;right:12px;padding:6px 12px;border:2px solid #e50914;background:#e50914;color:#fff;border-radius:6px;cursor:pointer;">Light</button>
+
+<h1>Choose a Genre</h1>
+
+<form id="recForm">
+  <select id="genre">
+    <option value="action">Action</option>
+    <option value="comedy">Comedy</option>
+    <option value="drama">Drama</option>
+    <option value="k-drama">K-Drama</option>
+    <option value="animation">Animation</option>
+  </select>
+  <button type="submit">Go</button>
+</form>
+
+<div id="results"></div>
+
+<script>
+/* Used AI to help load movie data from external JSON file */
+let moviesByGenre = {};
+
+fetch("movies.json")
+  .then(res => res.json())
+  .then(data => moviesByGenre = data);
+
+/* Used AI to help create event listener that updates grid when a genre is selected */
+document.getElementById("recForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const genre = document.getElementById("genre").value;
+  const list = moviesByGenre[genre];
+  if (!list) return;
+
+  /* Used AI to help format K-Drama label correctly */
+  const title = genre === "k-drama"
+    ? "K-Drama"
+    : genre.charAt(0).toUpperCase() + genre.slice(1);
+
+  results.innerHTML = `
+    <h2 style="color:#e50914;margin-bottom:12px;">${title}</h2>
+    <div class="grid">
+      ${list.map(m => `
+        <a class="card" href="movie-details.html?movie=${m.slug}">
+          <img src="${m.img}" alt="${m.title}">
+          <div class="title">${m.title}</div>
+          <div class="meta">${title} • ${m.date}</div>
+        </a>
+      `).join("")}
+    </div>
+  `;
+});
+
+/* Used AI to help create a simple light/dark mode toggle */
+document.getElementById("themeToggle").addEventListener("click", function() {
+  document.body.classList.toggle("light");
+  this.textContent = document.body.classList.contains("light") ? "Dark" : "Light";
+});
+</script>
+
+</body>
+</html>
