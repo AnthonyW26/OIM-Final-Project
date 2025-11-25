@@ -1,0 +1,27 @@
+{
+  "action": [
+    {"slug": "the-batman", "title": "The Batman", "date": "2022", "img": "images/batman.jpeg"},
+    {"slug": "spiderman-no-way-home", "title": "Spiderman No Way Home", "date": "2021", "img": "images/spiderman.jpeg"},
+    {"slug": "shang-chi", "title": "Shang-Chi", "date": "2021", "img": "images/shang-chi.jpg.webp"}
+  ],
+  "comedy": [
+    {"slug": "home-alone", "title": "Home Alone", "date": "1990", "img": "images/home-alone.jpg"},
+    {"slug": "elf", "title": "Elf", "date": "2003", "img": "images/elf.jpg"},
+    {"slug": "the-hangover", "title": "The Hangover", "date": "2009", "img": "images/the-hangover.jpg"}
+  ],
+  "drama": [
+    {"slug": "parasite", "title": "Parasite", "date": "2019", "img": "images/parasite.jpg"},
+    {"slug": "the-pursuit-of-happyness", "title": "The Pursuit of Happyness", "date": "2006", "img": "images/the-pursuit-of-happyness.jpg"},
+    {"slug": "interstellar", "title": "Interstellar", "date": "2014", "img": "images/interstellar.jpg"}
+  ],
+  "k-drama": [
+    {"slug": "weak-hero-class", "title": "Weak Hero Class", "date": "2023", "img": "images/weak-hero-class.png.webp"},
+    {"slug": "bloodhounds", "title": "Bloodhounds", "date": "2023", "img": "images/bloodhounds.jpg"},
+    {"slug": "my-name", "title": "My Name", "date": "2021", "img": "images/my-name.jpg"}
+  ],
+  "animation": [
+    {"slug": "soul", "title": "Soul", "date": "2020", "img": "images/soul.jpg"},
+    {"slug": "kung-fu-panda", "title": "Kung Fu Panda", "date": "2008", "img": "images/kung-fu-panda.jpg"},
+    {"slug": "inside-out", "title": "Inside Out", "date": "2015", "img": "images/inside-out.jpeg"}
+  ]
+}

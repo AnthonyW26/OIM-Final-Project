@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="images/movie-icon.png" type="image/x-icon">
+<title>Movie Details</title>
+<style>
+/* Used AI to help generate Netflix theme colors (dark bg + red accent) and light mode toggle - this was because I struggled to make it look nice after various attempts - also the layout looked bad */
+body { margin:0; font-family:Arial; background:#141414; color:#fff; }
+nav { display:flex; justify-content:center; gap:14px; background:#000; padding:12px 0; margin-bottom:16px; }
+nav a { color:#fff; text-decoration:none; font-weight:bold; }
+nav a:hover { color:#e50914; }
+.wrap { max-width:640px; margin:0 auto 30px; text-align:center; padding:12px; }
+h1 { color:#e50914; margin-bottom:14px; }
+/*  Used AI to fix images - Responsive image sizing and border styling as well to improve layout */
+.poster { max-width:320px; width:100%; border:2px solid #e50914; border-radius:8px; margin:0 auto 16px; display:block; }
+.meta { font-weight:bold; margin-bottom:10px; }
+.back { margin-top:25px; padding:8px 16px; border:2px solid #e50914; background:#e50914; color:#fff; font-weight:bold; border-radius:6px; cursor:pointer; }
+.back:hover { background:#b00610; }
+/* light theme overrides */
+body.light{background:#ffffff;color:#000;}
+body.light nav{background:#e6e6e6;}
+body.light nav a{color:#000;}
+body.light nav a:hover{color:#e50914;}
+body.light h1{color:#e50914;}
+body.light .poster{border-color:#e50914;}
+body.light .meta{color:#000;}
+body.light .back{background:#e50914;color:#fff;border-color:#e50914;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html">Home</a>
+  <a href="recommendations.html">Recommendations</a>
+  <a href="movie-details.html">Movie Details</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<button id="themeToggle" style="position:fixed;top:12px;right:12px;padding:6px 12px;border:2px solid #e50914;background:#e50914;color:#fff;border-radius:6px;cursor:pointer;">Light</button>
+<div class="wrap">
+  <div id="box"></div>
+  <button class="back" onclick="location.href='recommendations.html'">Back</button>
+</div>
+<script>
+const details = {
+  "shang-chi": { title:"Shang-Chi", genre:"Action", year:"2021", rating:"8.5", desc:"A trained fighter escapes a secretive past but must face family ties bound to mystical rings.", img:"images/shang-chi.jpg.webp" },
+  "the-batman": { title:"The Batman", genre:"Action", year:"2022", rating:"8.2", desc:"A brooding detective follows clues from a sadistic killer through Gotham’s corruption.", img:"images/batman.jpeg" },
+  "spiderman-no-way-home": { title:"Spiderman No Way Home", genre:"Action", year:"2021", rating:"8.3", desc:"A spell gone wrong pulls villains from other universes, forcing Peter into hard sacrifices.", img:"images/spiderman.jpeg" },
+  "home-alone": { title:"Home Alone", genre:"Comedy", year:"1990", rating:"7.6", desc:"A clever kid defends his house from burglars using chaotic homemade traps.", img:"images/home-alone.jpg" },
+  "elf": { title:"Elf", genre:"Comedy", year:"2003", rating:"7.1", desc:"Buddy leaves the North Pole to find his real dad while spreading cheer in New York.", img:"images/elf.jpg" },
+  "the-hangover": { title:"The Hangover", genre:"Comedy", year:"2009", rating:"7.7", desc:"Friends retrace their steps after a wild night leaves the groom missing.", img:"images/the-hangover.jpg" },
+  "parasite": { title:"Parasite", genre:"Drama", year:"2019", rating:"8.6", desc:"A struggling family infiltrates a wealthy household with shocking consequences.", img:"images/parasite.jpg" },
+  "interstellar": { title:"Interstellar", genre:"Drama", year:"2014", rating:"8.5", desc:"Explorers travel through a wormhole seeking a future for humanity.", img:"images/interstellar.jpg" },
+  "the-pursuit-of-happyness": { title:"The Pursuit of Happyness", genre:"Drama", year:"2006", rating:"8.0", desc:"A determined father fights through homelessness while striving for a better life for his son.", img:"images/the-pursuit-of-happyness.jpg" },
+  "weak-hero-class": { title:"Weak Hero Class", genre:"K-Drama", year:"2023", rating:"9.5", desc:"A quiet, brilliant student uses strategy and precision to fight dangerous bullies.", img:"images/weak-hero-class.png.webp" },
+  "bloodhounds": { title:"Bloodhounds", genre:"K-Drama", year:"2023", rating:"9.0", desc:"Two rookie boxers take on predatory lenders to protect vulnerable people.", img:"images/bloodhounds.jpg" },
+  "my-name": { title:"My Name", genre:"K-Drama", year:"2021", rating:"9.25", desc:"Driven by revenge, she infiltrates the police while working under a crime boss.", img:"images/my-name.jpg" },
+  "soul": { title:"Soul", genre:"Animation", year:"2020", rating:"8.5", desc:"A musician questions his purpose after an accident sends him on a journey of self-discovery.", img:"images/soul.jpg" },
+  "kung-fu-panda": { title:"Kung Fu Panda", genre:"Animation", year:"2008", rating:"8.75", desc:"A clumsy panda discovers his true potential in an ancient kung fu prophecy.", img:"images/kung-fu-panda.jpg" },
+  "inside-out": { title:"Inside Out", genre:"Animation", year:"2015", rating:"9.25", desc:"A girl’s emotions learn to work together as she adjusts to major life changes.", img:"images/inside-out.jpeg" }
+};
+const key = new URLSearchParams(location.search).get("movie");
+const m = details[key];
+const box = document.getElementById("box");
+box.innerHTML = !m
+  ? "<p><b>Please select a movie from the recommender.</b></p>"
+  : `<h1>${m.title}</h1><img class="poster" src="${m.img}" alt="${m.title}"><p class="meta">${m.genre} | ${m.year} | Rating: ${m.rating}</p><p>${m.desc}</p>`;
+document.getElementById('themeToggle').addEventListener('click',function(){
+  document.body.classList.toggle('light');
+  this.textContent = document.body.classList.contains('light') ? 'Dark' : 'Light';
+});
+</script>
+</body>
+</html>
